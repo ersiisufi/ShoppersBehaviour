@@ -9,7 +9,7 @@ def train_model(df: pd.DataFrame ):
     X = df.drop(config.TARGET, axis=1)
     y = df[config.TARGET]
 
-    X_train, X_test, y_train, y_test = train_test_split(X,y, config.TEST_SIZE, config.RANDOM_STATE)
+    X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=config.TEST_SIZE, random_state=config.RANDOM_STATE)
 
     model = create_pipeline()
 

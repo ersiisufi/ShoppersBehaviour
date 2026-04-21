@@ -18,32 +18,10 @@ def evaluate_model(model, X_test, y_test):
     print("MODEL EVALUATION RESULTS")
     print("="*30)
     print(classification_report(y_test, y_pred))
-    print(f"ROC-AUC Score: {roc_auc_score(y_test, y_probs):.4f}")
+    print(f"ROC-AUC Score: {roc_auc_score(y_test, y_probs):.4f} \n")
 
-    # 3. Feature Importance Visualization
-    # Accessing the classifier inside the pipeline
-    classifier = model.named_steps['Clasiffier']
-    
-    # We need to get the feature names from the preprocessor
-    # Note: This part is tricky because OHE creates new columns
-    # For now, let's keep it simple or use the preprocessor's get_feature_names_out
-    try:
-        preprocessor = model.named_steps['Preprocessing']
-        ohe_names = preprocessor.transformers_[1][1].get_feature_names_out(config.CAT_FEATURES)
-        feature_names = config.NUM_FEATURES + list(ohe_names) + config.BIN_FEATURES
-        
-        importances = pd.Series(classifier.feature_importances_, index=feature_names)
-        importances.sort_values(ascending=False).head(10).plot(kind='barh', figsize=(10,6))
-        plt.title("Top 10 Drivers of Purchase Intent")
-        plt.gca().invert_yaxis()
-        plt.show()
-    except Exception as e:
-        print(f"Could not generate feature importance plot: {e}")
+    y_pred_new = (y_probs >= 0.3).astype(int)
 
-    # 4. Confusion Matrix Plot
-    plt.figure(figsize=(6,4))
-    sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Blues')
-    plt.xlabel('Predicted')
-    plt.ylabel('Actual')
-    plt.title('Confusion Matrix')
-    plt.show()
+    print("--- Revised Report (Threshold = 0.3) ---")
+    print(classification_report(y_test, y_pred_new))
+

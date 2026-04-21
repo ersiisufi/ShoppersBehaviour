@@ -12,7 +12,7 @@ def create_pipeline():
             ('bin', 'passthrough', config.BIN_FEATURES)
         ]
     )
-    model = Pipeline(
+    model =  Pipeline(
         [
             ("Preprocessing", preprocessor),
             ("Clasiffier", RandomForestClassifier(
@@ -21,3 +21,4 @@ def create_pipeline():
             random_state=42))
         ]
     )
+    return model
