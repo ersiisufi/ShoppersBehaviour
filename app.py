@@ -27,6 +27,7 @@ col1, col2 = st.columns([1, 1])
 
 with col1:
     st.subheader("High-Impact Metrics")
+    threshold = st.slider("Targeting Sensitivity (Threshold)", 0.1, 0.9, 0.3)
     # These are our "Top Drivers" from the Feature Importance analysis
     page_values = st.slider("Page Values (Avg. value of pages visited)", 0.0, 300.0, 20.0)
     exit_rates = st.slider("Exit Rate (Percentage of exits from these pages)", 0.0, 0.2, 0.02)
@@ -65,17 +66,23 @@ with col2:
     input_df_engineered = engineer_behavioral_features(input_df)
     # Predict Probability
     prob = model.predict_proba(input_df_engineered)[0][1]
-    
+    is_purchase = prob >= threshold
     # Display the Result
     st.metric(label="Purchase Probability", value=f"{prob:.1%}")
     
-    if prob > 0.5:
-        st.success("✅ HIGH INTENT: This user is likely to buy!")
-        st.balloons()
-    elif prob > 0.2:
-        st.warning("⚠️ MEDIUM INTENT: This user is browsing. Consider a discount offer.")
+    # if prob > 0.5:
+    #     st.success("✅ HIGH INTENT: This user is likely to buy!")
+    #     st.balloons()
+    # elif prob > 0.2:
+    #     st.warning("⚠️ MEDIUM INTENT: This user is browsing. Consider a discount offer.")
+    
+    # else:
+    #     st.error("❌ LOW INTENT: Unlikely to convert at this stage.")
+
+    if is_purchase:
+        st.success(f"🎯 TARGET: High potential at {prob:.1%}")
     else:
-        st.error("❌ LOW INTENT: Unlikely to convert at this stage.")
+        st.info(f"⏳ NURTURE: Low potential at {prob:.1%}")
 
 # 5. The "Why" behind the prediction
 st.divider()
