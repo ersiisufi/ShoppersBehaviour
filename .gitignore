@@ -1,0 +1,16 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Environments
+venv/
+env/
+.env
+
+# Data & Models (Keep the structure, but don't upload the big files)
+data/raw/*.csv
+data/processed/*.csv
+models/*.joblib
+
+# OS specifics
+.DS_Store

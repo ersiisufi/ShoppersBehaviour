@@ -63,9 +63,9 @@ with col2:
     input_df = pd.DataFrame([input_data])
     
     # 1. Apply the same engineering we did during training!
-    input_df_engineered = engineer_behavioral_features(input_df)
+    # input_df_engineered = engineer_behavioral_features(input_df)
     # Predict Probability
-    prob = model.predict_proba(input_df_engineered)[0][1]
+    prob = model.predict_proba(input_df)[0][1]
     is_purchase = prob >= threshold
     # Display the Result
     st.metric(label="Purchase Probability", value=f"{prob:.1%}")
