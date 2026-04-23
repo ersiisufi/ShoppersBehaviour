@@ -1,11 +1,11 @@
-# Real-Time Customer Purchase Intent Prediction
+# Real Time Customer Purchase Intent Prediction
 
-Predicting customer purchase intent using behavioral session data. This project goes beyond standard classification by engineering domain-specific engagement features and applying cost-sensitive learning to address class imbalance (~15% conversion rate).
+Predicting customer purchase intent using behavioral session data. This project goes beyond standard classification by engineering domain specific engagement features and applying cost sensitive learning to address class imbalance (~15% conversion rate).
 
 ## Key Results:
 ROC-AUC: 91.7%
 Improved recall on the minority (conversion) class via class-weight tuning and threshold optimization
-Deployed an interactive dashboard for real-time decision support using Streamlit
+Deployed an interactive dashboard for real time decision support using Streamlit
 
 ## Problem Overview
 
@@ -33,7 +33,7 @@ Built using scikit-learn Pipeline for reproducibility and clean deployment:
 
 Preprocessing (scaling, transformations)
 Custom feature engineering
-Cost-sensitive Random Forest model
+Cost sensitive Random Forest model
 
 Serialization with Joblib
 
@@ -49,7 +49,7 @@ This ensures the model captures more potential buyers rather than defaulting to 
 
 Developed with Streamlit:
 
-Real-time predictions from user session inputs
+Real time predictions from user session inputs
 Adjustable classification threshold
 Enables business users to balance precision vs recall dynamically
 
@@ -59,8 +59,8 @@ Validation Strategy: Stratified train-test split + cross-validation
 
 Metrics:
 
-ROC-AUC: 0.917 | Excellent ability to rank high-intent users above low-intent users. 
-Recall (Revenue): 0.84 | Captures 84% of potential buyers—crucial for targeted retargeting.
+ROC-AUC: 0.917 | Excellent ability to rank high intent users above low intent users. 
+Recall (Revenue): 0.84 | Captures 84% of potential buyers, crucial for targeted retargeting.
 F1-score: 0.81 | Robust balance between precision and recall for stable deployment. 
 
 Focus was placed on recall and business impact, not just overall accuracy.
@@ -82,24 +82,28 @@ Streamlit
 Seaborn
 Engineering Practices:
 Modular src/ architecture
-Object-oriented pipeline design
+Object oriented pipeline design
 Model serialization
 Version control with Git/GitHub
 
 ## How to Run
 
 Clone the repository
-- git clone https://github.com/ersiisufi/ShoppersBehaviour
-
+```bash
+git clone https://github.com/ersiisufi/ShoppersBehaviour
+```
 Install dependencies
-- pip install -r requirements.txt
-
+```bash
+pip install -r requirements.txt
+```
 Train the model 
-- python main.py
-
+```bash
+python main.py
+```
 Launch the dashboard 
-- streamlit run app.py
-
+```bash
+streamlit run app.py
+```
 ## Final Note:
 
-This project emphasizes not just predictive performance, but deployability, interpretability, and business alignment—key aspects of real-world machine learning systems.
+This project emphasizes not just predictive performance, but deployability, interpretability, and business alignment, key aspects of real world machine learning systems.
