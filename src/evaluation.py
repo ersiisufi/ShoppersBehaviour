@@ -1,14 +1,7 @@
-# src/evaluation.py
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
-import config
 
 def evaluate_model(model, X_test, y_test):
-    """
-    Generates metrics and visualizations for model performance.
-    """
+
     # 1. Predictions
     y_pred = model.predict(X_test)
     y_probs = model.predict_proba(X_test)[:, 1]
