@@ -1,13 +1,13 @@
-Real-Time Customer Purchase Intent Prediction
+# Real-Time Customer Purchase Intent Prediction
 
 Predicting customer purchase intent using behavioral session data. This project goes beyond standard classification by engineering domain-specific engagement features and applying cost-sensitive learning to address class imbalance (~15% conversion rate).
 
-# Key Results:
+## Key Results:
 ROC-AUC: 91.7%
 Improved recall on the minority (conversion) class via class-weight tuning and threshold optimization
 Deployed an interactive dashboard for real-time decision support using Streamlit
 
-# Problem Overview
+## Problem Overview
 
 In e-commerce, only a small fraction of sessions lead to purchases. This imbalance makes standard classification models biased toward predicting “no purchase.”
 
@@ -16,9 +16,9 @@ Identifying high-intent users in real time
 Minimizing missed conversions (false negatives)
 Providing actionable insights for marketing teams
 
-# Solution Architecture
+## Solution Architecture
 
-## Feature Engineering
+### Feature Engineering
 
 Custom behavioral features were designed to capture user intent:
 
@@ -28,7 +28,7 @@ PageValues = estimated revenue contribution of visited pages
 
 These features encode engagement quality, not just raw activity.
 
-## ML Pipeline
+### ML Pipeline
 Built using scikit-learn Pipeline for reproducibility and clean deployment:
 
 Preprocessing (scaling, transformations)
@@ -37,7 +37,7 @@ Cost-sensitive Random Forest model
 
 Serialization with Joblib
 
-## Cost-Sensitive Learning
+### Cost-Sensitive Learning
 
 To handle class imbalance:
 
@@ -45,7 +45,7 @@ Applied class weights in Random Forest
 Tuned decision threshold to prioritize recall for high-value users
 This ensures the model captures more potential buyers rather than defaulting to majority predictions.
 
-## Interactive Dashboard
+### Interactive Dashboard
 
 Developed with Streamlit:
 
@@ -53,7 +53,7 @@ Real-time predictions from user session inputs
 Adjustable classification threshold
 Enables business users to balance precision vs recall dynamically
 
-# Model Evaluation
+## Model Evaluation
 
 Validation Strategy: Stratified train-test split + cross-validation
 
@@ -65,14 +65,14 @@ F1-score: 0.81 | Robust balance between precision and recall for stable deployme
 
 Focus was placed on recall and business impact, not just overall accuracy.
 
-## Key Insights (Feature Importance)
+### Key Insights (Feature Importance)
 
 Top drivers of purchase intent:
 PageValues — strongest indicator of conversion likelihood
 Product_Efficiency — high engagement per product correlates with intent
 Admin_Ratio — elevated values signal friction during checkout
 
-# Tech Stack
+## Tech Stack
 
 Language: Python
 Libraries:scikit-learn
@@ -86,20 +86,20 @@ Object-oriented pipeline design
 Model serialization
 Version control with Git/GitHub
 
-# How to Run
+## How to Run
 
 Clone the repository
-    git clone https://github.com/ersiisufi/ShoppersBehaviour
+- git clone https://github.com/ersiisufi/ShoppersBehaviour
 
 Install dependencies
-    pip install -r requirements.txt
+- pip install -r requirements.txt
 
-Train the model
-    python main.py
+Train the model 
+- python main.py
 
-Launch the dashboard
-    streamlit run app.py
+Launch the dashboard 
+- streamlit run app.py
 
-# Final Note:
+## Final Note:
 
 This project emphasizes not just predictive performance, but deployability, interpretability, and business alignment—key aspects of real-world machine learning systems.
