@@ -39,7 +39,6 @@ with col2:
     st.subheader("Prediction Result")
     
     # --- Create the Full Feature Row ---
-    # We start with a dictionary of "Average/Default" values
     input_data = {
         'Administrative': admin_pages,
         'Administrative_Duration': 40.0,
@@ -62,22 +61,12 @@ with col2:
     
     input_df = pd.DataFrame([input_data])
     
-    # 1. Apply the same engineering we did during training!
-    # input_df_engineered = engineer_behavioral_features(input_df)
-    # Predict Probability
+
     prob = model.predict_proba(input_df)[0][1]
     is_purchase = prob >= threshold
     # Display the Result
     st.metric(label="Purchase Probability", value=f"{prob:.1%}")
     
-    # if prob > 0.5:
-    #     st.success("✅ HIGH INTENT: This user is likely to buy!")
-    #     st.balloons()
-    # elif prob > 0.2:
-    #     st.warning("⚠️ MEDIUM INTENT: This user is browsing. Consider a discount offer.")
-    
-    # else:
-    #     st.error("❌ LOW INTENT: Unlikely to convert at this stage.")
 
     if is_purchase:
         st.success(f"🎯 TARGET: High potential at {prob:.1%}")
